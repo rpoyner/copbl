@@ -1626,6 +1626,28 @@ package_delete_command => "/usr/sbin/pkg_delete";
 
 ##
 
+body package_method pacman
+
+{
+package_changes => "bulk";
+
+package_list_command => "/usr/bin/pacman -Q";
+
+# set it to "0" to avoid caching of list during upgrade
+package_list_update_ifelapsed => "240";
+
+package_list_name_regex    => "(.*)\s+.*";
+package_list_version_regex => ".*\s+(.*)";
+package_installed_regex => ".*";
+
+package_name_convention => "$(name)";
+package_add_command => "/usr/bin/pacman -S --noconfirm --noprogressbar --needed";
+package_delete_command => "/usr/bin/pacman -Rs --noconfirm";
+package_update_command => "/usr/bin/pacman -S --noconfirm --noprogressbar --needed";
+}
+
+##
+
  # Single bundle for all the similar managers simplifies promises
 
 body package_method generic
@@ -1720,6 +1742,18 @@ freebsd::
  package_name_convention => "$(name)-$(version)";
  package_add_command => "/usr/sbin/pkg_add -r";
  package_delete_command => "/usr/sbin/pkg_delete";
+
+archlinux::
+ package_changes => "bulk";
+ package_list_command => "/usr/bin/pacman -Q";
+ package_list_name_regex    => "(.*)\s+.*";
+ package_list_version_regex => ".*\s+(.*)";
+ package_installed_regex => ".*";
+ package_name_convention => "$(name)";
+ package_list_update_ifelapsed => "240";
+ package_add_command => "/usr/bin/pacman -S --noconfirm --noprogressbar --needed";
+ package_delete_command => "/usr/bin/pacman -Rs --noconfirm";
+ package_update_command => "/usr/bin/pacman -S --noconfirm --noprogressbar --needed";
 }
 
 ##
