@@ -2311,7 +2311,7 @@ vars:
   "stopcommand[wpa_supplicant]"  string => "/etc/init.d/wpa_supplicant stop";
   "pattern[wpa_supplicant]"      string => ".*wpa_supplicant.*";
 
- suse::
+ SuSE|suse::
 
   "startcommand[mysql]" string => "/etc/init.d/mysqld start";
   "stopcommand[mysql]"  string => "/etc/init.d/mysqld stop";
