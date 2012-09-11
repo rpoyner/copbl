@@ -2626,14 +2626,14 @@ processes:
 
   start::
 
-    "$(pattern)"
+    "$(pattern[$(service)])"
 
              comment => "Verify that the service appears in the process table",
        restart_class => "restart_$(service)";
 
   stop::
 
-    "$(pattern)"
+    "$(pattern[$(service)])"
 
             comment => "Verify that the service does not appear in the process",
        process_stop => "$(stopcommand[$(service)])",
