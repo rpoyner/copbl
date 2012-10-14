@@ -1908,7 +1908,7 @@ body package_method smartos
   package_installed_regex => ".*"; # all reported are installed
 
   package_list_update_command => "/opt/local/bin/pkgin -y update";
-#  package_list_update_ifelapsed => "240";
+  package_list_update_ifelapsed => "240";
 
   package_add_command => "/opt/local/bin/pkgin -y install";
 
