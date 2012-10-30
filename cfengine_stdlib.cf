@@ -1666,6 +1666,7 @@ package_changes => "individual";
 package_list_command => "/bin/rpm -qa --queryformat \"i | repos | %{name} | %{version}-%{release} | %{arch}\n\"";
 
 # set it to "0" to avoid caching of list during upgrade
+
 package_list_update_command => "/usr/bin/yum check-update";
 package_list_update_ifelapsed => "240";
 
@@ -1767,7 +1768,7 @@ package_name_convention => "$(name).$(arch)";
 package_list_update_command => "/usr/bin/yum check-update";
 package_list_update_ifelapsed => "240";
 
-package_patch_installed_regex => "^[^*]\s.*";
+package_patch_installed_regex => "^\s.*";
 package_patch_name_regex    => "([^.]+).*";
 package_patch_version_regex => "[^\s]\s+([^\s]+).*";
 package_patch_arch_regex    => "[^.]+\.([^\s]+).*";
@@ -1808,7 +1809,7 @@ body package_method yum_rpm
   package_list_update_command => "/usr/bin/yum check-update";
   package_list_update_ifelapsed => "240";
 
-  package_patch_installed_regex => "^[^*]\s.*";
+  package_patch_installed_regex => "^\s.*";
   package_patch_name_regex    => "([^.]+).*";
   package_patch_version_regex => "[^\s]\s+([^\s]+).*";
   package_patch_arch_regex    => "[^.]+\.([^\s]+).*";
@@ -2093,9 +2094,10 @@ redhat::
  package_list_arch_regex    => "^\S+?\s\S+?\s(\S+)$";
  package_installed_regex => ".*";
  package_name_convention => "$(name)";
+
  package_list_update_command => "/usr/bin/yum check-update";
  package_list_update_ifelapsed => "0";     # sometimes, caching is pretty disturbing
- package_patch_installed_regex => "^[^*]\s.*";
+ package_patch_installed_regex => "^\s.*";
  package_patch_name_regex    => "([^.]+).*";
  package_patch_version_regex => "[^\s]\s+([^\s]+).*";
  package_patch_arch_regex    => "[^.]+\.([^\s]+).*";
@@ -2114,7 +2116,7 @@ redhat::
 # package_installed_regex => ".*(installed|\s+@).*";
 # package_name_convention => "$(name).$(arch)";
 # package_list_update_ifelapsed => "240";
-# package_patch_installed_regex => "^[^*]\s.*";
+# package_patch_installed_regex => "^\s.*";
 # package_patch_name_regex    => "([^.]+).*";
 # package_patch_version_regex => "[^\s]\s+([^\s]+).*";
 # package_patch_arch_regex    => "[^.]+\.([^\s]+).*";
